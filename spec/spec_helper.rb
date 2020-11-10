@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 require "bundler"
-require "byebug"
 Bundler.setup(:default, :development)
 
 unless RUBY_PLATFORM =~ /java/
