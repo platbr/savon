@@ -209,7 +209,7 @@ module Savon
 
     def builder
       builder = ::Builder::XmlMarkup.new
-      builder.instruct!(:xml, :encoding => @globals[:encoding])
+      builder.instruct!(:xml, :encoding => @globals[:encoding]) unless @globals[:no_encoding_tag]
       builder
     end
 
@@ -226,7 +226,7 @@ module Savon
         tag(xml, :Header, header_attributes) { xml << header.to_s } unless header.empty?
         tag(xml, :Body, body_attributes) do
           if @globals[:no_message_tag]
-            xml << message.to_s
+            xml.tag!(*message_tag) { xml << body_message }
           else
             xml.tag!(*namespaced_message_tag) { xml << body_message }
           end

@@ -92,7 +92,8 @@ module Savon
         :no_message_tag              => false,
         :follow_redirects            => false,
         :unwrap                      => false,
-        :host                        => nil
+        :host                        => nil,
+        :no_encoding_tag             => false
       }
 
       options = defaults.merge(options)
@@ -371,6 +372,11 @@ module Savon
     # Instruct requests to follow HTTP redirects.
     def follow_redirects(follow_redirects)
       @options[:follow_redirects] = follow_redirects
+    end
+
+    # Disable XML encoding TAG on
+    def no_encoding_tag(bool)
+      @options[:no_encoding_tag] = bool
     end
   end
 
